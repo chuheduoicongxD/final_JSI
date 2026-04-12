@@ -64,7 +64,7 @@ document.querySelector("form").addEventListener("submit", function(e){
     login(email, password)
     .then(function(){
         alert("Đăng nhập thành công!");
-        window.location.href = "main.html";
+        window.location.href = "index.html";
     })
     .catch(function(error){
         alert(error.message);
