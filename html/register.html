@@ -14,61 +14,69 @@ body{
     justify-content:center;
     align-items:center;
 }
-
 .register-box{
     background:white;
     padding:40px;
     border-radius:10px;
     width:400px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.2);
-}
-
-.register-box h2{
-    text-align:center;
-    margin-bottom:25px;
 }
 </style>
-
 </head>
 
 <body>
 
 <div class="register-box">
-
-<h2>Đăng ký</h2>
+<h2 class="text-center mb-4">Đăng ký</h2>
 
 <form>
-
 <div class="mb-3">
-<label class="form-label">Họ và tên</label>
-<input type="text" class="form-control" placeholder="Nhập họ tên">
+<label>Email</label>
+<input id="email" type="email" class="form-control" required>
 </div>
 
 <div class="mb-3">
-<label class="form-label">Email</label>
-<input type="email" class="form-control" placeholder="Nhập email">
+<label>Mật khẩu</label>
+<input id="password" type="password" class="form-control" required>
 </div>
 
 <div class="mb-3">
-<label class="form-label">Mật khẩu</label>
-<input type="password" class="form-control" placeholder="Nhập mật khẩu">
-</div>
-
-<div class="mb-3">
-<label class="form-label">Nhập lại mật khẩu</label>
-<input type="password" class="form-control" placeholder="Nhập lại mật khẩu">
+<label>Nhập lại mật khẩu</label>
+<input id="confirm" type="password" class="form-control" required>
 </div>
 
 <button class="btn btn-success w-100">Đăng ký</button>
 
 <div class="text-center mt-3">
-Đã có tài khoản? 
-<a href="login.html">Đăng nhập</a>
+Đã có tài khoản? <a href="login.html">Đăng nhập</a>
 </div>
-
 </form>
-
 </div>
+
+<!-- Firebase SDK -->
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
+<!-- file của bạn -->
+<script src="/js/config.js"></script>
+<script src="/js/auth.js"></script>
+
+<script>
+document.querySelector("form").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
+    register(email, password)
+    .then(()=>{
+        alert("Đăng ký thành công!");
+    })
+    .catch(err=>{
+        alert(err.message);
+    });
+});
+</script>
 
 </body>
 </html>

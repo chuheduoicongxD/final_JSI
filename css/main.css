@@ -1,0 +1,59 @@
+body {
+      background-color: #141414;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+      background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+    }
+
+    .navbar-brand {
+      color: red !important;
+      font-weight: bold;
+      font-size: 24px;
+    }
+
+    .hero {
+      height: 80vh;
+      background: url('https://image.tmdb.org/t/p/original/9yBVqNruk6Ykrwc32qrK2TIE5xw.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      padding: 50px;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(0,0,0,0.8), transparent);
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 500px;
+    }
+
+    .btn-custom {
+      margin-right: 10px;
+    }
+
+    .movie-row {
+      padding: 20px;
+    }
+
+    .movie-card {
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    .movie-card:hover {
+      transform: scale(1.1);
+      z-index: 2;
+    }
+
+    .movie-card img {
+      border-radius: 10px;
+      width: 100%;
+    }
