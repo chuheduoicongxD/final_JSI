@@ -51,16 +51,122 @@ function displayMovies(movies){
     }
 
     movies.forEach(movie => {
+
         let img = movie.poster_path 
             ? "https://image.tmdb.org/t/p/w300" + movie.poster_path
             : "https://via.placeholder.com/300x450";
 
         container.innerHTML += `
-            <div style="width:200px;">
-                <img src="${img}" style="width:100%; border-radius:8px;">
+            <div 
+                onclick="showMovieDetail(
+                    '${movie.title}',
+                    '${img}',
+                    '${movie.release_date}',
+                    '${movie.vote_average}',
+                    \`${movie.overview}\`
+                )"
+                style="
+                    width:200px;
+                    cursor:pointer;
+                    transition:0.3s;
+                "
+            >
+                <img 
+                    src="${img}" 
+                    style="
+                        width:100%;
+                        border-radius:10px;
+                    "
+                >
+
                 <h6>${movie.title}</h6>
                 <p>⭐ ${movie.vote_average}</p>
             </div>
         `;
     });
+}
+
+function showMovieDetail(title, image, date, rating, overview){
+
+    let oldModal = document.getElementById("movieModal");
+
+    if(oldModal){
+        oldModal.remove();
+    }
+
+    document.body.innerHTML += `
+        <div 
+            id="movieModal"
+            style="
+                position:fixed;
+                top:0;
+                left:0;
+                width:100%;
+                height:100%;
+                background:rgba(0,0,0,0.8);
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                z-index:9999;
+            "
+        >
+            <div 
+                style="
+                    background:#141414;
+                    color:white;
+                    width:80%;
+                    max-width:800px;
+                    border-radius:15px;
+                    overflow:hidden;
+                    position:relative;
+                "
+            >
+
+                <button 
+                    onclick="closeMovieModal()"
+                    style="
+                        position:absolute;
+                        top:10px;
+                        right:15px;
+                        background:red;
+                        border:none;
+                        color:white;
+                        padding:8px 12px;
+                        border-radius:50%;
+                        cursor:pointer;
+                    "
+                >
+                    X
+                </button>
+
+                <div style="display:flex; gap:20px; padding:20px;">
+
+                    <img 
+                        src="${image}" 
+                        style="
+                            width:250px;
+                            border-radius:10px;
+                        "
+                    >
+
+                    <div>
+                        <h2>${title}</h2>
+
+                        <p><b>📅 Release:</b> ${date}</p>
+
+                        <p><b>⭐ Rating:</b> ${rating}</p>
+
+                        <p style="margin-top:20px;">
+                            ${overview || "Không có mô tả"}
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    `;
+}
+function closeMovieModal(){
+    document.getElementById("movieModal").remove();
 }
