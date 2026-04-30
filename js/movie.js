@@ -4,6 +4,80 @@ console.log("movie.js loaded 🎬");
 
 const API_KEY = "5b6a34320cc159f27eb3f5d1ff58f923";
 
+loadPopularMovies();
+
+async function loadPopularMovies(){
+
+    try{
+
+        let url = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`;
+
+        let res = await fetch(url);
+
+        let data = await res.json();
+
+        console.log("Popular Movies:", data);
+
+        showPopularMovies(data.results);
+
+    }catch(err){
+
+        console.error(err);
+
+    }
+}
+
+function showPopularMovies(movies){
+
+    let container = document.getElementById("popularMovies");
+
+    container.innerHTML = "";
+
+    movies.forEach(movie => {
+
+        let img = movie.poster_path
+            ? "https://image.tmdb.org/t/p/w300" + movie.poster_path
+            : "https://via.placeholder.com/300x450";
+
+        container.innerHTML += `
+        
+            <div
+                onclick="showMovieDetail(
+                    '${movie.title}',
+                    '${img}',
+                    '${movie.release_date}',
+                    '${movie.vote_average}',
+                    \`${movie.overview}\`
+                )"
+
+                style="
+                    width:200px;
+                    cursor:pointer;
+                    transition:0.3s;
+                "
+            >
+
+                <img
+                    src="${img}"
+                    style="
+                        width:100%;
+                        border-radius:10px;
+                    "
+                >
+
+                <h6 class="text-white mt-2">
+                    ${movie.title}
+                </h6>
+
+                <p class="text-white">
+                    ⭐ ${movie.vote_average}
+                </p>
+
+            </div>
+        `;
+    });
+}
+
 document.addEventListener("DOMContentLoaded", function(){
 
     const form = document.getElementById("searchForm");
@@ -170,3 +244,4 @@ function showMovieDetail(title, image, date, rating, overview){
 function closeMovieModal(){
     document.getElementById("movieModal").remove();
 }
+
