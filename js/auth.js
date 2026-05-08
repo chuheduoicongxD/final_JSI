@@ -21,26 +21,3 @@ window.checkAuth = function(callback){
 };
 
 
-window.googleLogin = function(){
-
-    const provider = new firebase.auth.GoogleAuthProvider();
-
-    firebase.auth()
-        .signInWithPopup(provider)
-
-        .then((result) => {
-
-            alert("Đăng nhập Google thành công!");
-
-            window.location.href = "main.html";
-
-        })
-
-        .catch((error) => {
-
-            console.error(error);
-
-            alert(error.message);
-
-        });
-}
