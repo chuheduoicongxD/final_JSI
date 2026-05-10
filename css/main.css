@@ -57,3 +57,41 @@ body {
       border-radius: 10px;
       width: 100%;
     }
+
+/* background fade */
+
+#movieModal{
+    animation: fadeIn 0.3s ease;
+}
+
+/* popup animation */
+
+.movie-modal-content{
+    animation: zoomIn 0.3s ease;
+}
+
+/* fade */
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+}
+
+/* zoom */
+
+@keyframes zoomIn{
+    from{
+        transform:scale(0.7);
+        opacity:0;
+    }
+
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}

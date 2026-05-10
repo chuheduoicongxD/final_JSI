@@ -185,6 +185,8 @@ function showMovieDetail(title, image, date, rating, overview){
             "
         >
             <div 
+                class="movie-modal-content"
+
                 style="
                     background:#141414;
                     color:white;
