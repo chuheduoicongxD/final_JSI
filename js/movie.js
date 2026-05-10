@@ -10,7 +10,7 @@ async function loadPopularMovies(){
 
     try{
 
-        let url = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`;
+        let url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=16,10751&sort_by=popularity.desc`;
 
         let res = await fetch(url);
 
@@ -18,7 +18,7 @@ async function loadPopularMovies(){
 
         console.log("Popular Movies:", data);
 
-        showPopularMovies(data.results.slice(0, 15));
+        showPopularMovies(data.results);
 
     }catch(err){
 
