@@ -18,7 +18,7 @@ async function loadPopularMovies(){
 
         console.log("Popular Movies:", data);
 
-        showPopularMovies(data.results);
+        showPopularMovies(data.results.slice(0, 15));
 
     }catch(err){
 
